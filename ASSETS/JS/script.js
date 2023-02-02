@@ -1,3 +1,4 @@
+// renomear repositório
 let minute = 0;
 let second = 0;
 let intervalId = null;
@@ -85,7 +86,7 @@ function addLapAndCalculateAverage() {
   let totalTime = 0;
   lapTimes.forEach((time) => {
     totalTime += time;
-  });
+  })
   const averageTime = Math.round(totalTime / lapTimes.length);
   const averageMinute = Math.floor(averageTime / 60);
   const averageSecond = averageTime % 60;
