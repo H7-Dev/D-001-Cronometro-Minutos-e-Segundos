@@ -9,7 +9,7 @@
 
 
 
-> ### **❓ Questão: código HTML, SCSS e JavaScript para um cronômetro de minutos e segundos.**
+> ### **❓ cronômetro de minutos e segundos:  HTML, SCSS e JavaScript.**
 > #### **Descrição**
 >
 >     Este código irá exibir um cronômetro de minutos e segundos que começa a contar a partir de 00:00 e atualiza a cada segundo.
