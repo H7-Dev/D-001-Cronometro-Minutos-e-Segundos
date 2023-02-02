@@ -1,34 +1,60 @@
-const minute = document.querySelector('#minute');
-const second = document.querySelector('#second');
-const playButton = document.querySelector('#play');
-const pauseButton = document.querySelector('#pause');
-const resetButton = document.querySelector('#reset');
-let count = 0;
-let intervalId;
+let minute = 0;
+let second = 0;
+let intervalId = null;
 
-function start() {
+const minuteDisplay = document.querySelector("#minute");
+const secondDisplay = document.querySelector("#second");
+const startButton = document.querySelector("#play");
+const pauseButton = document.querySelector("#pause");
+const resetButton = document.querySelector("#reset");
+const lapButton = document.querySelector("#lap");
+const lapList = document.querySelector("#laps");
+
+// Função para iniciar o cronômetro
+function startTimer() {
   intervalId = setInterval(() => {
-    count++;
-    minute.innerHTML = pad(Math.floor(count / 60));
-    second.innerHTML = pad(count % 60);
+    second++;
+    if (second === 60) {
+      minute++;
+      second = 0;
+    }
+    minuteDisplay.textContent = (minute < 10 ? "0" : "") + minute;
+    secondDisplay.textContent = (second < 10 ? "0" : "") + second;
   }, 1000);
+  startButton.style.display = "none";
+  pauseButton.style.display = "inline-block";
 }
 
-function stop() {
+// Função para pausar o cronômetro
+function pauseTimer() {
   clearInterval(intervalId);
+  startButton.style.display = "inline-block";
+  pauseButton.style.display = "none";
 }
 
-function reset() {
-  stop();
-  count = 0;
-  minute.innerHTML = '00';
-  second.innerHTML = '00';
+// Função para resetar o cronômetro
+function resetTimer() {
+  clearInterval(intervalId);
+  minute = 0;
+  second = 0;
+  minuteDisplay.textContent = "00";
+  secondDisplay.textContent = "00";
+  lapList.innerHTML = "";
+  startButton.style.display = "inline-block";
+  pauseButton.style.display = "none";
 }
 
-playButton.addEventListener('click', start);
-pauseButton.addEventListener('click', stop);
-resetButton.addEventListener('click', reset);
-
-function pad(value) {
-  return String(value).padStart(2, '0');
+// Função para adicionar uma lap
+function addLap() {
+  const minuteString = (minute < 10 ? "0" : "") + minute;
+  const secondString = (second < 10 ? "0" : "") + second;
+  const lap = `${minuteString}:${secondString}`;
+  const lapItem = document.createElement("li");
+  lapItem.textContent = lap;
+  lapList.appendChild(lapItem);
 }
+
+startButton.addEventListener("click", startTimer);
+pauseButton.addEventListener("click", pauseTimer);
+resetButton.addEventListener("click", resetTimer);
+lapButton.addEventListener("click", addLap);

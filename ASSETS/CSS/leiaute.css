@@ -1,6 +1,43 @@
 #timer {
+  font-size: 36px;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+#controls {
   display: flex;
   justify-content: center;
-  align-items: center;
-  font-size: 36px;
+}
+#controls button {
+  padding: 10px 20px;
+  margin-right: 10px;
+  border-radius: 5px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+}
+#controls button:hover {
+  background-color: lightgray;
+}
+
+#lapList {
+  margin-top: 20px;
+}
+#lapList h3 {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+#lapList ul {
+  list-style: none;
+  padding: 0;
+}
+#lapList ul li {
+  font-size: 16px;
+  padding: 10px;
+  border-top: 1px solid #ccc;
+}
+#lapList ul li:first-child {
+  border-top: none;
 }/*# sourceMappingURL=leiaute.css.map */

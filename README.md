@@ -7,6 +7,115 @@
 <!--  ✅    -->
 <!--  ▶️    -->
 
+### **🏁❗  01.03 [-g implemento] lapButton e lapList**
+
+> #### **Descrição**
+>
+>     implementar um botão para marca cada volta e uma
+>     lista não ordenada para com cada volta marcada
+> ---
+>#### ***✍️ HTML***
+> ``` HTML
+>     <h1>Cronometro Minutos e Segundos</h1>
+>     <div id="timer">
+>         <span id="minute">00</span>:<span id="second">00</span>
+>     </div>
+>     <div id="controls">
+>         <button id="play">Play</button>
+>         <button id="pause">Pause</button>
+>         <button id="reset">Reset</button>
+>         <button id="lap">Lap</button>
+>     </div>
+>     <div id="lapList">
+>         <h3>Laps</h3>
+>         <ul id="laps">
+>           <!-- laps serão adicionados aqui -->
+>         </ul>
+>     </div>
+> ```
+>
+>#### ***✍️Exemplo de código JS***
+``` JS
+// Variáveis para armazenar a referência aos elementos HTML
+const minuteSpan = document.querySelector("#minute");
+const secondSpan = document.querySelector("#second");
+const playButton = document.querySelector("#play");
+const pauseButton = document.querySelector("#pause");
+const resetButton = document.querySelector("#reset");
+const lapButton = document.querySelector("#lap");
+const lapList = document.querySelector("#laps");
+
+// Variáveis para armazenar o estado do cronômetro
+let intervalId = null;
+let minute = 0;
+let second = 0;
+
+// Função para atualizar o display do cronômetro
+function updateTimer() {
+  secondSpan.textContent = (second < 10 ? "0" : "") + second;
+  minuteSpan.textContent = (minute < 10 ? "0" : "") + minute;
+}
+
+// Função para aumentar o cronômetro em um segundo
+function tick() {
+  second++;
+  if (second >= 60) {
+    minute++;
+    second = 0;
+  }
+  updateTimer();
+}
+
+// Função para iniciar o cronômetro
+function startTimer() {
+  intervalId = setInterval(tick, 1000);
+  playButton.setAttribute("disabled", true);
+  pauseButton.removeAttribute("disabled");
+}
+
+// Função para pausar o cronômetro
+function pauseTimer() {
+  clearInterval(intervalId);
+  intervalId = null;
+  playButton.removeAttribute("disabled");
+  pauseButton.setAttribute("disabled", true);
+}
+
+// Função para reiniciar o cronômetro
+function resetTimer() {
+  clearInterval(intervalId);
+  intervalId = null;
+  minute = 0;
+  second = 0;
+  updateTimer();
+  playButton.removeAttribute("disabled");
+  pauseButton.setAttribute("disabled", true);
+  lapList.innerHTML = "";
+}
+
+// Função para adicionar uma lap
+function addLap() {
+  const lap = `${minute}:${second < 10 ? "0" : ""}${second}`;
+  const lapItem = document.createElement("li");
+  lapItem.textContent = lap;
+  lapList.appendChild(lapItem);
+}
+
+// Adicione os ouvintes de eventos aos botões
+playButton.addEventListener("click", startTimer);
+pauseButton.addEventListener("click", pauseTimer);
+resetButton.addEventListener("click", resetTimer);
+lapButton.addEventListener("click", addLap);
+
+// Inicialize o cronômetro
+updateTimer();
+pauseButton.setAttribute("disabled", true);
+
+
+```
+>
+
+
 ### **🏁❗  01.02 [-g implemento] botão de reset**
 
 > #### **Descrição**
@@ -80,7 +189,8 @@
 > #### **Descrição**
 >
 >     Este código adiciona dois botões de play e pause ao seu cronômetro.
->     Quando você clica no botão "play", a contagem é iniciada e, quando clica no botão "pause", a contagem é pausada.
+>     Quando você clica no botão "play", a contagem é iniciada e,
+>     quando clica no botão "pause", a contagem é pausada.
 > ---
 >#### ***✍️Exemplo de código HTML***
 >``` HTML
@@ -137,7 +247,8 @@
 > ### **❓ cronômetro de minutos e segundos:  HTML, SCSS e JavaScript.**
 > #### **Descrição**
 >
->     Este código irá exibir um cronômetro de minutos e segundos que começa a contar a partir de 00:00 e atualiza a cada segundo.
+>     Este código irá exibir um cronômetro de minutos e segundos que começa a
+>     contar a partir de 00:00 e atualiza a cada segundo.
 >
 > ---
 > #### ***✍️Exemplo de código HTML***
