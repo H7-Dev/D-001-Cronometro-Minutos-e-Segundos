@@ -1,15 +1,3 @@
-// Este é o código JavaScript que cria um cronômetro. O cronômetro exibe os minutos e segundos decorridos na página e possui as seguintes funções: iniciar, pausar, reiniciar e adicionar uma volta.
-
-// A função startTimer() inicia o cronômetro definindo um intervalo que é executado a cada segundo, atualizando as exibições de minutos e segundos e alternando a visibilidade dos botões de início e pausa.
-
-// A função pauseTimer() interrompe o intervalo, pausando efetivamente o cronômetro.
-
-// A função resetTimer() redefine o cronômetro para seu estado inicial: 0 minutos, 0 segundos, com o visor e o histórico de voltas limpos e o botão Iniciar exibido e o botão Pausa oculto.
-
-// A função addLapAndCalculateAverage() registra o tempo atual como uma volta, adiciona-o ao histórico de voltas e calcula o tempo médio de todas as voltas. O tempo médio é exibido na página.
-
-// Os ouvintes de evento são adicionados aos botões para vincular cada função aos respectivos cliques de botão.
-
 
 let minute = 0;
 let second = 0;
